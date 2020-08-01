@@ -21,6 +21,12 @@ public class Category {
         return Id;
     }
 
+    public Category(){}
+
+    public Category(String description){
+        this.description=description;
+    }
+
     public void setId(Long id) {
         Id = id;
     }

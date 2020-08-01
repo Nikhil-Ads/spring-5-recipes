@@ -8,3 +8,6 @@ insert into unit_of_measure (description) VALUES ('Tablespoon');
 insert into unit_of_measure (description) VALUES ('Cup');
 insert into unit_of_measure (description) VALUES ('Pinch');
 insert into unit_of_measure (description) VALUES ('Ounce');
+insert into unit_of_measure (description) VALUES ('dash');
+insert into unit_of_measure (description) VALUES ('Pint');
+insert into unit_of_measure (description) VALUES ('whole');
