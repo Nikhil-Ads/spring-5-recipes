@@ -1,11 +1,15 @@
 package com.example.spring5recipes.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
  * author: Nikhil Adlakha
  */
+@Data
 @Entity
 public class Category {
 
@@ -14,12 +18,8 @@ public class Category {
     private Long Id;
     private String description;
 
-    @ManyToMany
-    private Set<Recipe> recipes;
-
-    public Long getId() {
-        return Id;
-    }
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Recipe> recipes = new HashSet<>();
 
     public Category(){}
 
@@ -27,23 +27,7 @@ public class Category {
         this.description=description;
     }
 
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
+    public int hashCode() {
+        return Id.hashCode();
     }
 }

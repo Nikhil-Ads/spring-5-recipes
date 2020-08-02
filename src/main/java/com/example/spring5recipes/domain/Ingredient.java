@@ -1,11 +1,14 @@
 package com.example.spring5recipes.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
  * author: Nikhil Adlakha
  */
+@Data
 @Entity
 public class Ingredient {
 
@@ -25,50 +28,15 @@ public class Ingredient {
 
     public Ingredient(){}
 
-    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom, Recipe recipe){
+    public Ingredient(String description, BigDecimal amount, UnitOfMeasure uom) {
         this.description=description;
         this.amount=amount;
         this.uom=uom;
-        this.recipe=recipe;
     }
 
-    public Long getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public UnitOfMeasure getUom() {
-        return uom;
-    }
-
-    public void setUom(UnitOfMeasure uom) {
-        this.uom = uom;
-    }
 }

@@ -4,6 +4,7 @@ import com.example.spring5recipes.domain.*;
 import com.example.spring5recipes.repositories.CategoryRepository;
 import com.example.spring5recipes.repositories.RecipeRepository;
 import com.example.spring5recipes.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.Optional;
 /**
  * author: Nikhil Adlakha
  */
+@Slf4j
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -35,6 +37,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     }
 
     private List<Recipe> getRecipes(){
+        log.debug("Loading Recipes....");
         List<Recipe> recipes=new ArrayList<>();
 
         //get UOMS
@@ -70,20 +73,19 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.\n" +
                 "\n" +
                 "4 Serve: Serve immediately, or if making a few hours ahead, place plastic wrap on the surface of the guacamole and press down to cover it and to prevent air reaching it. (The oxygen in the air causes oxidation which will turn the guacamole brown.) Refrigerate until ready to serve.");
-        notes.setRecipe(guacRecipe);
         guacRecipe.setNotes(notes);
         guacRecipe.getCategories().addAll(categories);
 
-        guacRecipe.getIngredients().add(new Ingredient("ripe avocados"   , BigDecimal.valueOf(2)   ,uoms.get(7).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("salt"            , BigDecimal.valueOf(0.25),uoms.get(0).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("fresh lime juice", BigDecimal.valueOf(1)   ,uoms.get(1).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("minced red onion", BigDecimal.valueOf(2)   ,uoms.get(1).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("serrano chiles"  , BigDecimal.valueOf(2)   ,uoms.get(7).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("cilantro"        , BigDecimal.valueOf(2)   ,uoms.get(1).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("black pepper"    , BigDecimal.valueOf(1)   ,uoms.get(5).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("ripe tomatoes"   , BigDecimal.valueOf(0.5) ,uoms.get(7).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("red radish"      , BigDecimal.valueOf(1)   ,uoms.get(7).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("tortilla chips"  , BigDecimal.valueOf(1)   ,uoms.get(7).get(),guacRecipe));
+        guacRecipe.addIngredient(new Ingredient("ripe avocados", BigDecimal.valueOf(2), uoms.get(7).get()));
+        guacRecipe.addIngredient(new Ingredient("salt", BigDecimal.valueOf(0.25), uoms.get(0).get()));
+        guacRecipe.addIngredient(new Ingredient("fresh lime juice", BigDecimal.valueOf(1), uoms.get(1).get()));
+        guacRecipe.addIngredient(new Ingredient("minced red onion", BigDecimal.valueOf(2), uoms.get(1).get()));
+        guacRecipe.addIngredient(new Ingredient("serrano chiles", BigDecimal.valueOf(2), uoms.get(7).get()));
+        guacRecipe.addIngredient(new Ingredient("cilantro", BigDecimal.valueOf(2), uoms.get(1).get()));
+        guacRecipe.addIngredient(new Ingredient("black pepper", BigDecimal.valueOf(1), uoms.get(5).get()));
+        guacRecipe.addIngredient(new Ingredient("ripe tomatoes", BigDecimal.valueOf(0.5), uoms.get(7).get()));
+        guacRecipe.addIngredient(new Ingredient("red radish", BigDecimal.valueOf(1), uoms.get(7).get()));
+        guacRecipe.addIngredient(new Ingredient("tortilla chips", BigDecimal.valueOf(1), uoms.get(7).get()));
 
         recipes.add(guacRecipe);
 
@@ -110,20 +112,19 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "4 Warm the tortillas: Place each tortilla on the grill or on a hot, dry skillet over medium-high heat. As soon as you see pockets of the air start to puff up in the tortilla, turn it with tongs and heat for a few seconds on the other side.\n"+
                 "Wrap warmed tortillas in a tea towel to keep them warm until serving.\n"+
                 "5 Assemble the tacos: Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.");
-        notes.setRecipe(guacRecipe);
         guacRecipe.setNotes(notes);
         guacRecipe.getCategories().addAll(categories);
 
-        guacRecipe.getIngredients().add(new Ingredient("ancho chilli powder"    , BigDecimal.valueOf(2)   ,uoms.get(1).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("dried oregano"          , BigDecimal.valueOf(1)   ,uoms.get(0).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("dried cumin"            , BigDecimal.valueOf(1)   ,uoms.get(0).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("sugar"                  , BigDecimal.valueOf(1)   ,uoms.get(0).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("salt"                   , BigDecimal.valueOf(0.5) ,uoms.get(0).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("clove garlic"           , BigDecimal.valueOf(1)   ,uoms.get(7).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("orange zest, grated"    , BigDecimal.valueOf(1)   ,uoms.get(1).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("orange juice"           , BigDecimal.valueOf(3)   ,uoms.get(1).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("olive oil"              , BigDecimal.valueOf(2)   ,uoms.get(1).get(),guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("boneless chicken thighs", BigDecimal.valueOf(6)   ,uoms.get(7).get(),guacRecipe));
+        guacRecipe.addIngredient(new Ingredient("ancho chilli powder", BigDecimal.valueOf(2), uoms.get(1).get()));
+        guacRecipe.addIngredient(new Ingredient("dried oregano", BigDecimal.valueOf(1), uoms.get(0).get()));
+        guacRecipe.addIngredient(new Ingredient("dried cumin", BigDecimal.valueOf(1), uoms.get(0).get()));
+        guacRecipe.addIngredient(new Ingredient("sugar", BigDecimal.valueOf(1), uoms.get(0).get()));
+        guacRecipe.addIngredient(new Ingredient("salt", BigDecimal.valueOf(0.5), uoms.get(0).get()));
+        guacRecipe.addIngredient(new Ingredient("clove garlic", BigDecimal.valueOf(1), uoms.get(7).get()));
+        guacRecipe.addIngredient(new Ingredient("orange zest, grated", BigDecimal.valueOf(1), uoms.get(1).get()));
+        guacRecipe.addIngredient(new Ingredient("orange juice", BigDecimal.valueOf(3), uoms.get(1).get()));
+        guacRecipe.addIngredient(new Ingredient("olive oil", BigDecimal.valueOf(2), uoms.get(1).get()));
+        guacRecipe.addIngredient(new Ingredient("boneless chicken thighs", BigDecimal.valueOf(6), uoms.get(7).get()));
 
         recipes.add(guacRecipe);
 

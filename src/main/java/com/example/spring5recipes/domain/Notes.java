@@ -1,10 +1,14 @@
 package com.example.spring5recipes.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
  * author: Nikhil Adlakha
  */
+
+@Data
 @Entity
 public class Notes {
 
@@ -18,28 +22,14 @@ public class Notes {
     @Lob
     private String recipeNotes;
 
-    public Long getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
+    @Override
+    public String toString() {
+        return String.format("{Note: {Id: %d , Recipe Notes: %s}}", id, recipeNotes);
     }
 }
 
