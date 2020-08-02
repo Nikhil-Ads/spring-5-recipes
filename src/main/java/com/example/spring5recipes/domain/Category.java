@@ -20,7 +20,7 @@ public class Category {
     private Long Id;
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Recipe> recipes = new HashSet<>();
 
     public Category(){}

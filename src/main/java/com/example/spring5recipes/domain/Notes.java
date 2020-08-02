@@ -1,6 +1,8 @@
 package com.example.spring5recipes.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
  */
 
 @Data
+@EqualsAndHashCode(exclude = {"recipe"})
+@ToString(exclude = {"recipe"})
 @Entity
 public class Notes {
 
