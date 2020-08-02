@@ -21,15 +21,5 @@ public class Notes {
 
     @Lob
     private String recipeNotes;
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("{Note: {Id: %d , Recipe Notes: %s}}", id, recipeNotes);
-    }
 }
 

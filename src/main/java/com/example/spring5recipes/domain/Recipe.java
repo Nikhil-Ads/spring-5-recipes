@@ -53,14 +53,4 @@ public class Recipe {
         ingredient.setRecipe(this);
         return this.getIngredients().add(ingredient);
     }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return String.format("{Recipe: {id: %-3d}}", id);
-    }
 }

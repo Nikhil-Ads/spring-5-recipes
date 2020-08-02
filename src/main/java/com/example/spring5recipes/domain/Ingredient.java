@@ -1,6 +1,7 @@
 package com.example.spring5recipes.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
  * author: Nikhil Adlakha
  */
 @Data
+@EqualsAndHashCode(exclude = {"recipe"})
 @Entity
 public class Ingredient {
 
@@ -32,11 +34,6 @@ public class Ingredient {
         this.description=description;
         this.amount=amount;
         this.uom=uom;
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
 }
