@@ -2,6 +2,7 @@ package com.example.spring5recipes.controllers;
 
 import com.example.spring5recipes.commands.RecipeCommand;
 import com.example.spring5recipes.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * author: Nikhil Adlakha
  */
 @Controller
+@Slf4j
 public class RecipeController {
 
     RecipeService recipeService;
@@ -40,5 +42,13 @@ public class RecipeController {
     public String updateRecipe(@PathVariable(value = "id") String id, Model model) {
         model.addAttribute("recipe", recipeService.findCommandById(Long.parseLong(id)));
         return "recipe/recipeform";
+    }
+
+
+    @GetMapping("recipe/{id}/delete")
+    public String deleteRecipe(@PathVariable(value = "id") String id) {
+        log.debug("Deleting id: " + id);
+        recipeService.deleteById(Long.parseLong(id));
+        return "redirect:/";
     }
 }
